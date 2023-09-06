@@ -1,12 +1,18 @@
 \usepackage{fancyhdr}
 \usepackage{titling}
+\usepackage{sectsty}
+\subsectionfont{\normalfont}
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand\maketitle{
-    \fancyhead[C]{
-        \thetitle
-        \ifx \theauthor\empty  \else \ – \theauthor \fi
-        \ifx \thedate\empty  \else \ – \thedate \ \fi
-    }
+    \rhead{ {{< meta semester >}}\\{{< meta author >}} }
+    \lhead{ {{< meta title >}} - {{< meta subtitle >}}\\{{< meta university >}} }
 }
-\fancyfoot[C]{\thepage}
+\rfoot{Page \thepage}
+\def\showsolutions{ {{< meta solution >}} }
+\edef\deftrue{ true }
+\ifx\showsolutions\deftrue
+\newcommand{\sol}[1]{\subsection*{Solution}#1}
+\else
+\newcommand{\sol}[1]{}
+\fi
